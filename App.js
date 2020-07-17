@@ -15,10 +15,14 @@ export default class App extends Component {
   }
 
   async componentDidMount() {
-    const url = "https://restcountries.eu/rest/v2/all";
-    const response = await fetch(url);
-    const data = await response.json();
-    this.setState({ countries: data, isLoaded: true });
+    try {
+      const url = "https://restcountries.eu/rest/v2/all";
+      const response = await fetch(url);
+      const data = await response.json();
+      this.setState({ countries: data, isLoaded: true });
+    catch(e) {
+      console.log("There was a problem feting the data.");
+    }
     //console.log(this.state.countries);
   }
 
